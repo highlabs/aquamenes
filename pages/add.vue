@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <Title />
-    <LinkButton title="narf" url="/add" />
+    <Title title="Add" />
+    <LinkButton title="narf" />
   </div>
 </template>
 
