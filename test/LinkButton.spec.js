@@ -1,12 +1,15 @@
-import { mount } from '@vue/test-utils'
-import Link from '@/components/Link.vue'
+import { shallowMount, RouterLinkStub } from '@vue/test-utils'
+import LinkButton from '@/components/LinkButton.vue'
 
-describe('Link', () => {
+describe('LinkButton', () => {
   let cmp
-  const createCmp = (propsData) => mount(Link, { propsData })
+  const createCmp = (propsData) =>
+    shallowMount(LinkButton, { propsData, stubs: { NuxtLink: RouterLinkStub } })
 
   test('is a Vue instance', () => {
-    const wrapper = mount(Link)
+    const wrapper = shallowMount(LinkButton, {
+      stubs: { NuxtLink: RouterLinkStub }
+    })
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
 
