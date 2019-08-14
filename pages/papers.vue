@@ -1,29 +1,72 @@
 <template>
-  <div class="container mx-auto text-center">
-    <Title title="Aquamenes" />
-    <div>
-      <Subtitle title="What's is Aquamenes?" />
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse itaque
-        consequatur optio, maiores repellendus nemo fuga veniam ratione ut? Eum
-        iste aliquid soluta blanditiis inventore illo voluptatibus libero,
-        tempora omnis!
-      </p>
+  <div class="container mx-auto">
+    <Title title="Players" />
+
+    <Subtitle title="Set your nickname and Papers" />
+
+    <div v-if="showHowMany" class="flex flex-col items-start">
+      <div>
+        <label for="papers">How many papers?</label>
+        <NumberInput
+          id="papers"
+          v-model="papers"
+          :value="papers"
+          min="3"
+          placeholder="3+"
+        />
+      </div>
+      <Button title="Done" @click="setHowMany" />
     </div>
-    <LinkButton title="Start!" url="papers" />
+
+    <div v-else class="flex flex-col items-start">
+      <div>
+        <label for="nickname">Your Nickname</label>
+        <Input
+          id="nickname"
+          v-model="player.name"
+          value="player.name"
+          placeholder="Ford Prefect"
+        />
+      </div>
+
+      <div v-for="(paper, index) in player.papers" :key="index">
+        <label :for="'paper' + index">Paper Number {{ index + 1 }}</label>
+        <Input
+          :id="'paper' + index"
+          v-model="player.papers[index]"
+          :value="paper"
+          placeholder="Be creative!"
+        />
+      </div>
+
+      <Button title="Add More" @click="addMorePlayer" />
+      <p v-if="errors.name.length">{{ errors.name }}</p>
+      <p v-if="errors.papers.length">{{ errors.papers }}</p>
+
+      <Button class="w-full" title="StartGame" @click="startGame" />
+    </div>
+    <ul>
+      <li v-for="(registeredPlayer, index) in playersList" :key="index">
+        {{ registeredPlayer.name }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
+import Button from '~/components/Button.vue'
 import Title from '~/components/Title.vue'
 import Subtitle from '~/components/Subtitle.vue'
-import LinkButton from '~/components/LinkButton.vue'
+import Input from '~/components/Input.vue'
+import NumberInput from '~/components/NumberInput.vue'
 
 export default {
   components: {
+    Button,
     Title,
     Subtitle,
-    LinkButton
+    Input,
+    NumberInput
   },
   data() {
     return {
