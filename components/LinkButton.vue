@@ -1,17 +1,12 @@
 <template>
-  <nuxt-link :to="url">
-    <Button :title="title" />
+  <nuxt-link class="inline-block py-4 px-6 mt-2 mb-4 border-4" :to="url">
+    <span class="border-b-2 py-2">{{ title }}</span>
   </nuxt-link>
 </template>
 
 <script>
-import Button from '@/components/Button'
-
 export default {
   name: 'Link',
-  components: {
-    Button
-  },
   props: {
     title: {
       type: String,
@@ -24,3 +19,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+a:hover,
+a:focus {
+  @apply bg-white text-black border-black;
+}
+a:hover > span {
+  @apply border-black;
+}
+</style>
