@@ -1,5 +1,8 @@
 <template>
-  <nuxt-link class="inline-block py-4 px-6 mt-2 mb-4 border-4" :to="url">
+  <nuxt-link
+    class="inline-block py-4 px-6 mt-2 mb-4 border-4 no-underline text-white"
+    :to="url"
+  >
     <span class="border-b-2 py-2">{{ title }}</span>
   </nuxt-link>
 </template>
