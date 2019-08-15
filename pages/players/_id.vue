@@ -2,7 +2,7 @@
   <div class="container mx-auto">
     <Title title="Players" />
 
-    <Subtitle title="Set Players" />
+    <Subtitle :title="`Set Player ${playerId}`" />
 
     <div>
       <label for="nickname">Your Nickname</label>
@@ -15,7 +15,9 @@
     </div>
 
     <div v-for="(paper, index) in player.papers" :key="index">
-      <label :for="'paper' + index">Paper Number {{ index + 1 }}</label>
+      <label class="block mt-2" :for="'paper' + index"
+        >Paper Number {{ index + 1 }}</label
+      >
       <Input
         :id="'paper' + index"
         v-model="player.papers[index]"
@@ -24,21 +26,16 @@
       />
     </div>
 
-    <Button title="Add More" @click="addMorePlayer" />
+    <Button title="Add Another Player" @click="addMorePlayer" />
     <p v-if="errors.name.length">{{ errors.name }}</p>
     <p v-if="errors.papers.length">{{ errors.papers }}</p>
 
     <Button
       v-if="playersList.length >= 4"
       class="w-full"
-      title="StartGame"
+      title="Start Game"
       @click="startGame"
     />
-    <ul>
-      <li v-for="(registeredPlayer, index) in playersList" :key="index">
-        {{ registeredPlayer.name }}
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -73,15 +70,19 @@ export default {
       return this.$store.state.players.playersList
     },
     playerId() {
-      return this.$route.params.id
+      return parseFloat(this.$route.params.id)
     }
   },
   mounted() {
     this.$nextTick(function() {
-      if (this.playersList.length < parseFloat(this.playerId)) {
+      if (this.playersList.length < this.playerId) {
         this.$router.push('/papers')
       }
-      this.setHowMany()
+      console.log(this.playersList[this.playerId])
+      if (!this.playersList[this.playerId]) {
+        this.setHowMany()
+      }
+      this.player = this.playersList[this.playerId]
     })
   },
   methods: {
