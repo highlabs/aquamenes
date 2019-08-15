@@ -25,11 +25,11 @@ export default {
 </script>
 
 <style scoped>
-a:hover,
-a:focus {
+button:hover,
+button:focus {
   @apply bg-white text-black border-black;
 }
-a:hover > span {
+button:hover > span {
   @apply border-black;
 }
 </style>
