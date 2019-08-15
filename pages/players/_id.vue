@@ -78,9 +78,9 @@ export default {
       if (this.playersList.length < this.playerId) {
         this.$router.push('/papers')
       }
-      console.log(this.playersList[this.playerId])
       if (!this.playersList[this.playerId]) {
         this.setHowMany()
+        return false
       }
       this.player = this.playersList[this.playerId]
     })
@@ -122,7 +122,7 @@ export default {
       if (this.hasErrors()) {
         return false
       }
-      const playerRoute = `/players/${parseFloat(this.playerId) + 1}`
+      const playerRoute = `/players/${parseFloat(this.playersList.length) + 1}`
       this.$store.commit('players/setPlayerInfo', this.player)
       this.$router.push(playerRoute)
     },
