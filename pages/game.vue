@@ -1,27 +1,23 @@
 <template>
   <div class="container">
     <Title title="Game" />
-    <Button title="Shuffle Teams" @click="teamShuffle" />
 
-    <div class="flex flex-row">
-      <div v-for="(team, index) in teams" :key="index" class="border m-3 p-3">
-        <h1>{{ team.name }}</h1>
-        <p v-for="(player, playIndex) in team.players" :key="playIndex">
-          {{ player }}
-        </p>
-      </div>
-    </div>
+    <Teams :teams="teams" />
+
+    <Button title="Shuffle Teams" @click="teamShuffle" />
   </div>
 </template>
 
 <script>
 import Button from '~/components/Button.vue'
 import Title from '~/components/Title.vue'
+import Teams from '~/components/Teams.vue'
 
 export default {
   components: {
     Button,
-    Title
+    Title,
+    Teams
   },
   computed: {
     teams() {
