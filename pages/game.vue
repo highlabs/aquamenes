@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <Title title="Game" />
-    <Button title="narf" @click="click" />
     <Button title="Shuffle Teams" @click="teamShuffle" />
 
     <div class="flex flex-row">
@@ -30,11 +29,8 @@ export default {
     }
   },
   methods: {
-    click() {
-      this.$store.dispatch('game/generateGame')
-    },
-    teamShuggle() {
-      this.$store.dipatch('game/setTeamOrder')
+    teamShuffle() {
+      this.$store.dispatch('game/splitPlayers')
     }
   }
 }
