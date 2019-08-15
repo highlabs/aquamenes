@@ -78,6 +78,9 @@ export default {
   },
   mounted() {
     this.$nextTick(function() {
+      if (this.playersList.length < parseFloat(this.playerId)) {
+        this.$router.push('/papers')
+      }
       this.setHowMany()
     })
   },

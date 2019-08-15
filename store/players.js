@@ -36,7 +36,6 @@ export const mutations = {
   },
   setPlayerPaper(state, playerInfo) {
     const { value, playerId } = playerInfo
-    console.log(value, playerId)
     state.playersList[playerId] = value
   }
 }
