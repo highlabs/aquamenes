@@ -1,6 +1,6 @@
 <template>
   <input
-    class="border-2 border-white w-full bg-black p-4 my-2 inline-block"
+    class="pixel-border border-2 border-white w-full bg-black p-4 my-2 inline-block"
     :value="value"
     required
     @input="handleInput"
